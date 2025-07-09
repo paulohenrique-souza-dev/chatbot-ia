@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Cadastro{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-4">Cadastro</h5>
+          <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="username" class="form-label">Usuário</label>
+              <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="text" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="password1" class="form-label">Senha</label>
+              <input type="password" class="form-control" id="password1" name="password1" required>
+            </div>
+            <div class="mb-3">
+              <label for="password2" class="form-label">Confirme a senha</label>
+              <input type="password" class="form-control" id="password2" name="password2" required>
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+          </form>
+          {% if form.errors %}
+            <div class="alert alert-danger mt-4">
+              <ul class="mb-0">
+                {% for field in form %}
+                  {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+          <div class="text-center mt-3">
+            <a href="{% url 'login' %}" class="btn btn-link">Já é cadastrado? Faça login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
