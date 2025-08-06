@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+
+
+## criando as tabelas do sistema
 class Chat(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
     message = models.TextField()
